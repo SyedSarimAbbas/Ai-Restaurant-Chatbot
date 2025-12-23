@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI Pizza Palace - Your 24/7 AI-powered pizzeria. Order delicious handcrafted pizzas, sides, and desserts online.">
+    <meta name="keywords" content="pizza, delivery, AI, restaurant, order online, fast food">
+    <title>🍕 AI Pizza Palace - Delicious Pizza, Powered by AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+            <div class="logo">
+                <span class="logo-icon">🍕</span>
+                <span class="logo-text">AI Pizza Palace</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-view="home" role="menuitem" aria-current="page">
+                    <span class="nav-icon">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item" data-view="menu" role="menuitem">
+                    <span class="nav-icon">📜</span>
+                    <span>Menu</span>
+                </a>
+                <a href="#" class="nav-item" data-view="dashboard" role="menuitem">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-view="orders" role="menuitem">
+                    <span class="nav-icon">📦</span>
+                    <span>Orders</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="ai-status">
+                    <span class="status-dot"></span>
+                    <span>AI System Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content" role="main">
+
+            <!-- Home View with Hero -->
+            <section id="home-view" class="view active">
+                <!-- Hero Section -->
+                <div class="hero-section" role="banner">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="hero-emoji">🍕</span>
+                            AI Pizza Palace
+                        </h1>
+                        <p class="hero-subtitle">Handcrafted perfection, powered by AI. Fresh ingredients, fast
+                            delivery, 24/7.</p>
+                        <div class="hero-cta">
+                            <button class="btn btn-hero" id="hero-order-btn" aria-label="Order Now">
+                                <span>🛒</span> Order Now
+                            </button>
+                            <button class="btn btn-hero-secondary" id="hero-menu-btn" aria-label="View Menu">
+                                <span>📜</span> View Menu
+                            </button>
+                        </div>
+                        <div class="hero-features">
+                            <div class="hero-feature">
+                                <span class="feature-icon">🚀</span>
+                                <span>30 min delivery</span>
+                            </div>
+                            <div class="hero-feature">
+                                <span class="feature-icon">🤖</span>
+                                <span>AI-Powered</span>
+                            </div>
+                            <div class="hero-feature">
+                                <span class="feature-icon">⏰</span>
+                                <span>Open 24/7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Menu Preview -->
+                <div class="featured-section">
+                    <h2 class="section-title">🔥 Popular Picks</h2>
+                    <div class="featured-grid" id="featured-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Promotions Banner -->
+                <div class="promo-banner">
+                    <div class="promo-content">
+                        <span class="promo-tag">🎉 LIMITED TIME</span>
+                        <h3>Buy 2 Pizzas, Get 1 FREE!</h3>
+                        <p>Use code <strong>PIZZA3</strong> at checkout</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu View -->
+            <section id="menu-view" class="view">
+                <header class="view-header">
+                    <div>
+                        <h1 class="page-title">Our Menu</h1>
+                        <p class="page-subtitle">Fresh ingredients, endless flavors</p>
+                    </div>
+                    <div class="menu-controls">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="menu-search" class="search-input" placeholder="Search menu..."
+                                aria-label="Search menu">
+                        </div>
+                        <div class="filter-tabs" role="tablist" aria-label="Menu categories">
+                            <button class="filter-tab active" data-category="all" role="tab"
+                                aria-selected="true">All</button>
+                            <button class="filter-tab" data-category="Pizza" role="tab" aria-selected="false">🍕
+                                Pizza</button>
+                            <button class="filter-tab" data-category="Side" role="tab" aria-selected="false">🍟
+                                Sides</button>
+                            <button class="filter-tab" data-category="Drink" role="tab" aria-selected="false">🥤
+                                Drinks</button>
+                            <button class="filter-tab" data-category="Dessert" role="tab" aria-selected="false">🍰
+                                Dessert</button>
+                        </div>
+                    </div>
+                </header>
+                <div class="menu-grid" id="menu-grid" role="list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view">
+                <header class="header">
+                    <div class="header-left">
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-subtitle">AI-Operated Restaurant Management</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="current-time" id="current-time"></div>
+                        <button class="btn btn-primary" id="refresh-btn" aria-label="Refresh data">
+                            <span>🔄</span> Refresh
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card gradient-orange">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-content">
+                            <h3 id="orders-today">0</h3>
+                            <p>Orders Today</p>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-green">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-content">
+                            <h3>$<span id="revenue-today">0.00</span></h3>
+                            <p>Revenue Today</p>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-blue">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-content">
+                            <h3 id="pending-orders">0</h3>
+                            <p>Pending Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card gradient-purple">
+                        <div class="stat-icon">🤖</div>
+                        <div class="stat-content">
+                            <h3>24/7</h3>
+                            <p>AI Always On</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Order Status Breakdown</h3>
+                        <div class="chart-container">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Revenue by Category</h3>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="recent-orders-card">
+                    <h3>Recent Orders</h3>
+                    <div class="table-container">
+                        <table class="orders-table" id="recent-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-orders-body">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders View -->
+            <section id="orders-view" class="view">
+                <div class="view-header">
+                    <h2>Order Management</h2>
+                    <div class="filter-group">
+                        <select id="status-filter" class="filter-select" aria-label="Filter by status">
+                            <option value="">All Statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Preparing">Preparing</option>
+                            <option value="Ready">Ready</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Cart Sidebar -->
+        <aside class="cart-sidebar" id="cart-sidebar" role="complementary" aria-label="Shopping cart">
+            <div class="cart-header">
+                <h3>🛒 Your Cart</h3>
+                <button class="cart-close-btn" id="cart-close" aria-label="Close cart">×</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <div class="cart-empty">
+                    <span class="cart-empty-icon">🛒</span>
+                    <p>Your cart is empty</p>
+                    <p class="cart-empty-hint">Add items from the menu</p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="cart-total-amount" id="cart-total">$0.00</span>
+                </div>
+                <button class="btn btn-checkout" id="checkout-btn" disabled aria-label="Proceed to checkout">
+                    Checkout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Floating Cart Button -->
+        <button class="cart-fab" id="cart-fab" aria-label="Open cart">
+            <span class="cart-fab-icon">🛒</span>
+            <span class="cart-fab-count" id="cart-count">0</span>
+        </button>
+
+        <!-- Chat Widget -->
+        <div class="chat-widget" id="chat-widget">
+            <button class="chat-toggle" id="chat-toggle" aria-label="Open chat with AI assistant">
+                <span class="chat-toggle-icon">🤖</span>
+            </button>
+            <div class="chat-window" id="chat-window">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-info">
+                        <h3>AI Pizza Assistant</h3>
+                        <p>Always here to help!</p>
+                    </div>
+                    <button class="chat-minimize" id="chat-minimize" aria-label="Minimize chat">−</button>
+                </div>
+                <div class="chat-suggestions" id="chat-suggestions">
+                    <button class="suggestion-chip" data-message="Show me the menu">📜 View Menu</button>
+                    <button class="suggestion-chip" data-message="What are your promotions?">🎉 Deals</button>
+                    <button class="suggestion-chip" data-message="What are the ingredients?">🥗 Ingredients</button>
+                    <button class="suggestion-chip" data-message="Track my order">📦 Track Order</button>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot">
+                        <div class="message-content">
+                            👋 Welcome to AI Pizza Palace! I'm your AI assistant. How can I help you today?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message..."
+                        aria-label="Chat message input">
+                    <button class="chat-send-btn" id="chat-send-btn" aria-label="Send message">
+                        <span>➤</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close image preview">×</button>
+        <img src="" alt="" id="lightbox-img" class="lightbox-img">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal" role="dialog" aria-modal="true" aria-label="Checkout">
+        <div class="modal-content modal-checkout">
+            <div class="modal-header">
+                <h3>🍕 Complete Your Order</h3>
+                <button class="modal-close" id="checkout-modal-close" aria-label="Close checkout">×</button>
+            </div>
+            <div class="checkout-summary" id="checkout-summary">
+                <!-- Populated by JS -->
+            </div>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="customer-name">Your Name *</label>
+                    <input type="text" id="customer-name" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">Phone Number *</label>
+                    <input type="tel" id="customer-phone" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="customer-address">Delivery Address (optional)</label>
+                    <textarea id="customer-address" rows="2"></textarea>
+                </div>
+                <div class="checkout-total">
+                    <span>Order Total:</span>
+                    <span class="checkout-total-amount" id="checkout-total">$0.00</span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span>🚀</span> Place Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Menu Item Modal (Admin) -->
+    <div class="modal" id="add-item-modal" role="dialog" aria-modal="true" aria-label="Add menu item">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Menu Item</h3>
+                <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+            </div>
+            <form id="add-item-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-price">Price ($)</label>
+                    <input type="number" id="item-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" required>
+                        <option value="Pizza">Pizza</option>
+                        <option value="Drink">Drink</option>
+                        <option value="Side">Side</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="item-description">Description</label>
+                    <textarea id="item-description" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
